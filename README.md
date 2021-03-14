@@ -1,15 +1,15 @@
 ## usersテーブル
 
-| Column           | Type    | Options       |
-| -----------------| ------- | ------------- |
-| nickname         | string  | null: false   |
-| email            | string  | null: false   |
-| password         | string  | null: false   |
-| last-name(kanji) | string  | null: false   |
-| first-name(kanji)| string  | null: false   |
-| last-name(kana)  | string  | null: false   |
-| first-name(kana) | string  | null: false   |
-| birthday         | string  | null: false   |
+| Column              | Type    | Options                     |
+| -----------------   | ------- | --------------------------- |
+| nickname            | string  | null: false                 |
+| email               | string  | null: false, unique: true   |
+| encrypted_password  | string  | null: false                 |
+| last-name           | string  | null: false                 |
+| first-name          | string  | null: false                 |
+| last-name_kana      | string  | null: false                 |
+| first-name_kane     | string  | null: false                 |
+| birthday            | date    | null: false                 |
 
 ## Association
 
@@ -21,21 +21,20 @@
 
 | Column           | Type    | Options         |
 | ---------------- | ------- | --------------- |
-| item-image       | ActiveStorageにて実装      |
-| item-name        | string  | null: false     |
-| item-description | string  | null: false     |
-| item-category    | ActiveHashにて実装         |
-| item-status      | ActiveHashにて実装         |
-| item-delivery    | ActiveHashにて実装         |
-| shipping-area    | ActiveHashにて実装         |
-| shipping-days    | ActiveHashにて実装         |
-| selling-price    | string  | null: false     |
+| item_name        | string  | null: false     |
+| item_description | text    | null: false     |
+| category_id      | integer | null: false     |
+| status_id        | integer | null: false     |
+| delivery_id      | integer | null: false     |
+| area_id          | integer | null: false     |
+| days_id          | integer | null: false     |
+| selling_price    | integer | null: false     |
 
 ## Association
 
 - belongs_to :user
 - has_many :comments
-- belongs_to :buyer
+- has_one :buyer
 
 ## commentsテーブル
 
@@ -54,28 +53,27 @@
 
 | Column            | Type       | Options          |
 | ----------------- | ---------- | ---------------- |
-| card-information  | string     | null: false      |
-| expiration-date   | string     | null: false      |
-| security-code     | string     | null: false      |
 | user              | references | null: false      |
+| item              | references | null: false      |
 
 ## Association
 
-- has_one :user
+- belongs_to :user
 - has_one :shipping_address
-- has_many :items
+- belongs_to :item
 
 ## shipping_addressesテーブル
 
 | Column             | Type       | Options          |
 | ------------------ | ---------- | ---------------- |
-| postal-code        | string     | null: false      |
-| prefectures        | ActiveHashにて実装             |
+| postal_code        | string     | null: false      |
+| delivery_id        | integer    | null: false      |
 | municipality       | string     | null: false      |
 | address            | string     | null: false      |
-| building-name      | string     | optional: input  |
-| phone-number       | string     | null: false      |
+| building_name      | string     |                  |
+| phone_number       | string     | null: false      |
+| buyer              | references | null: false      |
 
 ## Association
 
-- has_one :buyer
+- belongs_to :buyer
