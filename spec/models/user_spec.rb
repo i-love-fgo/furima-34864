@@ -82,12 +82,10 @@ RSpec.describe User, type: :model do
       end
       it "last_nameが存在しないと、登録できない" do
         @user.last_name = ''
-        @user.first_name = '太郎'
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name can't be blank"
       end
       it "first_nameが存在しないと、登録できない" do
-        @user.last_name = '山田'
         @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "First name can't be blank"
