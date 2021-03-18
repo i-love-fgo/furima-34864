@@ -138,7 +138,6 @@
             <%# end %>
             <%# //商品が売れていればsold outを表示しましょう %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <% if @items.length == 0 %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -158,15 +157,14 @@
         <% end %>
       </li>
       <% end %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-
+      
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
               <%= item.item_name %>
             </h3>
             <div class='item-price'>
-              <span><%= item.selling_price %>円<br><%= item.delivery_id %></span>
+              <span><%= item.selling_price %>円<br><%= item.delivery.name %></span>
               <div class='star-btn'>
                 <%= image_tag "star.png", class:"star-icon" %>
                 <span class='star-count'>0</span>
