@@ -30,7 +30,6 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    #binding.pry
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -51,8 +50,9 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == params[:id].to_i
-      redirect_to action: :index
+    @item = Item.find_by(id: params[:id])
+    unless @item.user_id == current_user.id
+      redirect_to root_path
     end
   end
 

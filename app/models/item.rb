@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :user
+  def user
+    return User.find_by(id: self.user_id)
+  end
+  
   has_one_attached :image
   with_options presence: true do
     validates :image
