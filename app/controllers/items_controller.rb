@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :move_to_index, except: [:index, :show, :new, :create]
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :move_to_index, except: [:index, :show, :new, :create]
 
   def index
     @items = Item.order(created_at: "DESC")
@@ -47,7 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find_by(id: params[:id])
     unless @item.user_id == current_user.id
       redirect_to root_path
     end
