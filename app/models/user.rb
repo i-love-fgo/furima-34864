@@ -16,4 +16,5 @@ class User < ApplicationRecord
     end
     validates :birthday, presence: true
   has_many :items, foreign_key: :item_user_id
+  has_many :buyer, foreign_key: :item_user_id
   end

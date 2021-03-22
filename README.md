@@ -55,19 +55,19 @@
 ## Association
 
 - belongs_to :user
-- has_one :shipping_address
+- has_one :buyer_address
 - belongs_to :item
 
-## shipping_addressesテーブル
+## buyer_addressesテーブル
 
 | Column             | Type       | Options                         |
 | ------------------ | ---------- | ------------------------------- |
 | postal_code        | string     | null: false                     |
-| delivery_id        | integer    | null: false                     |
+| area_id            | integer    | null: false                     |
 | municipality       | string     | null: false                     |
-| address            | string     | null: false                     |
+| house_number       | string     | null: false                     |
 | building_name      | string     |                                 |
-| phone_number       | string     | null: false                     |
+| phone_number       | integer    | null: false                     |
 | buyer              | references | null: false, foreign_key: true  |
 
 ## Association

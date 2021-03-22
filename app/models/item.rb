@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  belongs_to :buyer
   def user
     return User.find_by(id: self.user_id)
   end
