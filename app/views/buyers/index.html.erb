@@ -27,7 +27,7 @@
       </p>
     </div>
 
-    <%= form_with model:@buyer, url: item_buyers_path(@item.id), local: true do |f| %>
+    <%= form_with model:[@item, @buyer_address], url: item_buyers_path(@item.id), local: true do |f| %>
 
       <%= render 'shared/error_messages', model: f.object %>
 
