@@ -35,7 +35,7 @@ class BuyersController < ApplicationController
   end
 
   def move_to_index
-    unless @buyer_address.present?
+    unless @buyer_address.present? 
       redirect_to root_path
     end
   end
