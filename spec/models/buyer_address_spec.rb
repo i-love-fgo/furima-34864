@@ -20,6 +20,11 @@ RSpec.describe BuyerAddress, type: :model do
       end
 
       context '購入情報が保存できないとき' do
+        it 'tokenが空だと保存できない' do
+          @buyer_address.token = ''
+          @buyer_address.valid?
+          expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
+        end
         it 'postal_codeが空だと保存できない' do
           @buyer_address.postal_code = ''
           @buyer_address.valid?
