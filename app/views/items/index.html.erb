@@ -124,7 +124,7 @@
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
 
-      <% @items.each do |item| %>  
+      <% @items.each do |item| %>
         <% if @items.any? %>
           <li class='list'>
             <div class='item-img-content'>
@@ -141,13 +141,11 @@
                   </div>
                 </div>
         
-                <%# 商品が売れていればsold outを表示しましょう %>
-                <% if item.present? %>
-                <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div>
+                <% if item.buyer.present? %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
                 <% end %>
-                <%# //商品が売れていればsold outを表示しましょう %>
               </div>
             </div>
           </li>

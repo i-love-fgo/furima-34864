@@ -1,4 +1,6 @@
 class BuyersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: :index
 
   def index
     @item = Item.find(params[:item_id])
@@ -30,6 +32,12 @@ class BuyersController < ApplicationController
         card: buyer_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def move_to_index
+    unless @buyer_address.present?
+      redirect_to root_path
+    end
   end
 
 end
