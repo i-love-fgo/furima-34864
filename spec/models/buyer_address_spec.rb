@@ -70,6 +70,16 @@ RSpec.describe BuyerAddress, type: :model do
           @buyer_address.valid?
           expect(@buyer_address.errors.full_messages).to include("Phone number is invalid.")
         end
+        it 'user_idが空だと、登録できない' do
+          @buyer_address.user_id = ''
+          @buyer_address.valid?
+          expect(@buyer_address.errors.full_messages).to include("User can't be blank")
+        end
+        it 'item_idが空だと、登録できない' do
+          @buyer_address.item_id = ''
+          @buyer_address.valid?
+          expect(@buyer_address.errors.full_messages).to include("Item can't be blank")
+        end
       end
     end
 end

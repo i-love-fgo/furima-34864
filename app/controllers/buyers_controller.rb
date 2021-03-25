@@ -3,12 +3,10 @@ class BuyersController < ApplicationController
   before_action :move_to_index
 
   def index
-    @item = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new
   end
   
   def create
-    @item = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new(buyer_params)
     if @buyer_address.valid?
       pay_item
