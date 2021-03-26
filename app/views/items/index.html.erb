@@ -125,7 +125,6 @@
     <ul class='item-lists'>
 
       <% @items.each do |item| %>
-        <% if @items.any? %>
           <li class='list'>
             <div class='item-img-content'>
               <%= link_to image_tag(item.image, class: :item_image), item_path(item.id) %>
@@ -149,7 +148,8 @@
               </div>
             </div>
           </li>
-        <% else %>
+        <% end %>
+        <% unless @items.any? %>
               <li class='list'>
                 <%= link_to '#' do %>
                   <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -167,8 +167,7 @@
                   </div>
                 <% end %>
               </li>
-         <% end %>
-      <% end %>
+        <% end %>
     </ul>
   </div>
 </div>
